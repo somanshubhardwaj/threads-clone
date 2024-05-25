@@ -13,7 +13,11 @@ export default function Home() {
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo({content: content, name: session?.user?.name, email: session?.user?.email});
+    addTodo({
+      content: content,
+      name: session?.user?.name,
+      email: session?.user?.email,
+    });
     setContent("");
   };
 
@@ -49,7 +53,7 @@ export default function Home() {
         <div className="flex flex-col gap-3">
           <h1 className="text-3xl font-bold">Add Post</h1>
           <div>
-            <form  className="flex flex-col gap-3">
+            <form className="flex flex-col gap-3">
               <input
                 type="text"
                 placeholder="content"
@@ -87,8 +91,6 @@ export default function Home() {
             </div>
           ))}
         </div>
-
-     
       </>
     );
   } else {
