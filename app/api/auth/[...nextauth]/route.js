@@ -13,7 +13,6 @@ const authOptions = {
     async signIn({ user, account }) {
       if (account.provider === "google") {
         const { name, email } = user;
-        console.log("user", user);
         try {
           await connectMongoDB();
           const userExists = await User.findOne({ email });
