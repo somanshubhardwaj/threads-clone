@@ -9,23 +9,25 @@ const Navbar = () => {
   return (
     <div>
       <nav className="flex justify-between items-center py-4 px-6">
-        <span className="">Threads Clone</span>
         {status === "authenticated" && (
-          <div className="flex">
-            <div className="   mx-3">
-              <img
-                src={session.user.image}
-                alt={session.user.name}
-                className="rounded-full w-10 h-10"
-              />
+          <>
+            <span className="">Threads Clone</span>
+            <div className="flex">
+              <div className="   mx-3">
+                <img
+                  src={session.user.image}
+                  alt={session.user.name}
+                  className="rounded-full w-10 h-10"
+                />
+              </div>
+              <button
+                className="bg-black text-white rounded-md p-2"
+                onClick={signOut}
+              >
+                Sign out
+              </button>
             </div>
-            <button
-              className="bg-black text-white rounded-md p-2"
-              onClick={signOut}
-            >
-              Sign out
-            </button>
-          </div>
+          </>
         )}
       </nav>
     </div>

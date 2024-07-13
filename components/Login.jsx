@@ -1,25 +1,27 @@
-import React from 'react'
-import { signIn } from 'next-auth/react'
+import React from "react";
+import { signIn } from "next-auth/react";
 export const Login = () => {
   return (
-    <div className='flex justify-center items-center min-h-screen flex-col'>
-         <h1 className="md:text-6xl font-bold">
-          Threads Clone App
-        </h1>
-        <p className="text-lg">
-            This is a clone of the threads app
-            made with Next.js and MongoDB
-
-            
-        </p>
-        <button
-          onClick={() => signIn("google")}
-          className="flex items-center gap-4 shadow-xl rounded-lg pl-3"
-        >
-          <span className="bg-blue-500 text-white px-4 py-3">
+    <div className="flex flex-col sm:flex-row min-h-[80vh] ">
+      <div className="sm:w-1/2 sm:h-[80vh] w-full flex justify-center items-center ">
+        <div className="">
+          <h1 className="text-4xl font-bold text-center">Welcome to Threads</h1>
+          <p className="text-center mt-4">
+            This is a simple example of how to use NextAuth.js
+          </p>
+        </div>
+      </div>
+      <div className="sm:w-1/2 sm:h-[80vh] w-full flex justify-center items-center">
+        <div className="glass p-5 min-w-[30vw] flex flex-col gap-5 justify-center items-center min-h-[30vh]">
+          <h1 className="text-4xl font-bold text-center">Login</h1>
+          <button
+            onClick={() => signIn("google")}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          >
             Sign in with Google
-          </span>
-        </button>
+          </button>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
