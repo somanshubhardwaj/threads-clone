@@ -1,5 +1,5 @@
 body {
-  background-color:#0a0a0a;
+  background-color: #0a0a0a;
 
   color: white;
   min-height: 100vh;
@@ -15,5 +15,62 @@ input {
   background: transparent;
   color: white;
 }
+.pagetitle {
+  height: 55px;
+  display: grid;
+  place-items: center;
+  @apply text-center;
+}
+.pagebox {
+  height: calc(100vh - 55px);
+  @apply mx-auto bg-[#181818] border border-[#7777779e] rounded-2xl rounded-b-none border-b-0 overflow-auto;
+}
+.pagebox::-webkit-scrollbar {
+  width: 0px;
+}
+.pagebox::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.pagebox::-webkit-scrollbar-track {
+  background: transparent;
+}
+.navigationbar {
+  position: fixed;
+  display: flex;
+  color: #4d4d4d;
+  .navbuttons{
+    display: flex;
 
+    @media screen and (max-width: 768px) {
+      flex-direction: row;
+      justify-content: space-around;
+      background-color: black;
+      padding: 10px;    flex: 1;
+      
+    }
+    @media screen and (min-width: 768px) {
+      flex-direction: column;
+      gap: 30px;
 
+      
+    }
+    
+  }
+  @media screen and (max-width: 768px) {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  @media screen and (min-width: 768px) {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 55px;
+    flex-direction: column;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+  }
+}

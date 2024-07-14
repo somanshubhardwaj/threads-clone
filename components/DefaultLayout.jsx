@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import NavigationBar from "./NavigationBar";
 
-const DefaultLayout = ({children}) => {
+const DefaultLayout = ({ children, pagetitle }) => {
   return (
-    <div className='max-w-2xl mx-auto bg-[#181818] border border-[#7777779e] rounded-2xl '>
+    <div className="h-screen max-w-2xl mx-auto">
+      <NavigationBar/>
+      <div className="pagetitle">{pagetitle}</div>
+      <div className=" pagebox">
         {children}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default DefaultLayout
+export default DefaultLayout;

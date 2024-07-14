@@ -9,6 +9,7 @@ function Posts() {
   const { status, data: session } = useSession();
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState("");
+  
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -39,12 +40,14 @@ function Posts() {
   //update and delete to be added later
 
   return (
-    <div>
+    <div className="">
       <div className="flex justify-center ">
         <div className="w-full">
-          <div className="flex flex-col gap-3 p-5">
+          <div className="sm:flex flex-col gap-3 p-5 hidden">
             <div>
-              <form className="flex flex-col sm:flex-row gap-3 ">
+              <form className="flex flex-col sm:flex-row gap-3 items-center">
+                <img src={session?.user?.image} className="w-9 h-9 rounded-full" />
+           
                 <input
                   type="text"
                   placeholder="content"
@@ -55,15 +58,15 @@ function Posts() {
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="bg-blue-500 text-white px-3 py-2 rounded-lg w-max "
+                  className="border border-gray-500 text-white px-3 py-1 rounded-lg w-max text-base"
                 >
-                  Add Post
+                   Post
                 </button>
               </form>
             </div>
           </div>
 
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-col gap-3 w-full ">
             {posts.map((post) => (
               <Post key={post._id} post={post} />
             ))}
@@ -76,7 +79,7 @@ function Posts() {
 
 const HomePosts = () => {
   return (
-    <DefaultLayout>
+    <DefaultLayout pagetitle="Home">
       <Posts />
     </DefaultLayout>
   );
