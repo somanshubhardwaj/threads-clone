@@ -15,6 +15,7 @@ export async function GET(req, { params }) {
     if (!post) {
       return NextResponse.json({ success: false, error: "Post not found" });
     }
+    
     return NextResponse.json({ success: true, data: post });
   } catch (error) {
     return NextResponse.json({ success: false, error: error });

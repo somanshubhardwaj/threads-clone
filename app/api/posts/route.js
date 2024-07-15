@@ -20,7 +20,7 @@ export async function GET() {
       { status: 401 }
     );
   }
-  const posts = await Post.find();
+  const posts = await Post.find().select("-__v -likes -comments -updatedAt -createdAt -email").sort({ createdAt: -1 });
   return NextResponse.json({ success: true, data: posts });
 }
 export async function POST(req) {

@@ -3,28 +3,33 @@ import React, { useEffect, useState } from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import { useSession } from "next-auth/react";
 import axios from "axios";
+import Post from "@/components/Post";
 const page = () => {
-  const { status, data: session } = useSession();
   const [user, setUser] = useState({});
+  const [posts, setPosts] = useState([]);
   const getUSer = async () => {
-    const res = await axios.get(`/api/user`);
-    setUser(res.data.data[0]);
-    console.log(res.data.data[0]);
+    const res = await axios.get(`/api/user/loggedin`);
+    setUser(res.data.data);
+  };
+  const getPosts = async () => {
+    const res = await axios.get(`api/user/posts`);
+    setPosts(res.data.data);
   };
   useEffect(() => {
     getUSer();
+    getPosts();
   }, []);
 
   return (
     <DefaultLayout>
       <div>
-       profile details
-
+        profile details
+        <div>{user?.name}</div>
         <div>
-          <h1>{user.name}</h1>
-          <h1>{user.email}</h1>
-
-          </div>
+          {posts.map((post) => (
+            <Post key={post._id} post={post} />
+          ))}
+        </div>
       </div>
     </DefaultLayout>
   );

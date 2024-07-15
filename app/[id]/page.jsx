@@ -17,6 +17,7 @@ const Page = ({ params }) => {
       return;
     }
     setPost(response.data.data);
+    console.log(response.data.data);
   };
   useEffect(() => {
     fetchData();
@@ -42,6 +43,24 @@ const Page = ({ params }) => {
     setPost(response.data.data);
  
     setComment("");
+  };const handleLike = (e) => {
+    e.preventDefault();
+    addLike(post._id);
+  };
+
+  const addLike = async (id) => {
+    console.log(id);
+    const response = await axios.put(`/api/posts/like`, { id });
+    if (!response.data.success) {
+      toast.error(response.data.error);
+      return;
+    }
+    if (response.error) {
+      toast.error(response.error);
+    }
+    if (response.data.success) {
+      toast.success("Liked ");
+    }
   };
 
   return (
@@ -61,7 +80,8 @@ const Page = ({ params }) => {
               </div>
               <div className="flex flex-row gap-7 mt-3 ">
                 <div className="flex flex-row  items-center justify-center">
-                  <IoIosHeartEmpty className="text-xl" />
+                  <button onClick={handleLike} type="submit">
+                  <IoIosHeartEmpty className="text-xl" /></button>
                   <span className="text-md font-light">{post.likecount}</span>
                 </div>
                 <div className="flex flex-row  items-center justify-center gap-1">
@@ -80,7 +100,7 @@ const Page = ({ params }) => {
         <div className="comment p-6">
           <h1 className="font-bold text-xl mb-3">Comments</h1>
 
-          <form className="flex flex-col sm:flex-row gap-3 items-center">
+          <form className="flex flex-row sm:gap-3 items-center">
             <img src={session?.user?.image} className="w-9 h-9 rounded-full" />
 
             <input
@@ -100,8 +120,8 @@ const Page = ({ params }) => {
 
           </form>
           <div className="">
-            {post.comments?.map((comment) => (
-              <div className="flex flex-row gap-3 my-8">
+            {post.comments?.map((comment,index) => (
+              <div className="flex flex-row gap-3 my-8" key={index}>
                 <div>
                   <button className="rounded-full w-9 h-9 p-1 bg-red-700 text-white">
                     {comment.name.charAt(0).toUpperCase()}

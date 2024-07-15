@@ -1,27 +1,8 @@
 import React from "react";
-import axios from "axios";
-import toast from "react-hot-toast";import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeartEmpty } from "react-icons/io";
 import { FaRegComment } from "react-icons/fa";import { RxShare2 } from "react-icons/rx";
 const Post = ({ post }) => {
-  const handleLike = (e) => {
-    e.preventDefault();
-    addLike(post._id);
-  };
 
-  const addLike = async (id) => {
-    console.log(id);
-    const response = await axios.put(`/api/posts/like`, { id });
-    if (!response.data.success) {
-      toast.error(response.data.error);
-      return;
-    }
-    if (response.error) {
-      toast.error(response.error);
-    }
-    if (response.data.success) {
-      toast.success("Liked ");
-    }
-  };
 
   return (
     <a href={`${post._id}`}>
