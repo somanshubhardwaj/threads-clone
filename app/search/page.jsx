@@ -3,7 +3,7 @@ import DefaultLayout from "@/components/DefaultLayout";
 const page = () => {
   
   return (
-    <DefaultLayout>
+    <DefaultLayout pagetitle={"Search"}>
       <div className="p-6">
         <div className="">
           <form className="flex gap-2">

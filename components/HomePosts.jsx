@@ -6,7 +6,7 @@ import Post from "@/components/Post";
 import toast from "react-hot-toast";
 import DefaultLayout from "./DefaultLayout";
 function Posts() {
-  const { status, data: session } = useSession();
+  const {  data: session } = useSession();
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState("");
   
@@ -37,7 +37,7 @@ function Posts() {
     const response = await axios.post("/api/posts", post);
     setPosts([...posts, response.data.data]);
   };
-  //update and delete to be added later
+ 
 
   return (
     <div className="">
